@@ -1,0 +1,24 @@
+prometheus-server:
+  image: prom/prometheus
+  ports:
+    - 9090:9090
+
+  volumes:
+    - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+
+cadvisor:
+  image: google/cadvisor
+  ports:
+    - 8080:8080
+  volumes:
+    - /:/rootfs:ro
+    - /var/run:/var/run:rw
+    - /sys:/sys:ro
+    - /var/lib/docker:/var/lib/docker:ro
+
+grafana-ui:
+  image: grafana/grafana
+  ports:
+    - 3000:3000
+  environment:
+    - GF_SECURITY_ADMIN_PASSWORD=secret
