@@ -29,3 +29,11 @@ scrape_configs:
 
     target_groups:
       - targets: ['cadvisor:8080']
+
+  - job_name: 'metrics-gateway'
+
+    scrape_interval: 5s
+    scrape_timeout: 10s
+
+    target_groups:
+      - targets: ['metrics-gateway:9091']
